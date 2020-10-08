@@ -4,6 +4,10 @@ export const NavbarStyle = styled.nav`
   display: flex;
   border: 1px solid black;
   list-style: none;
+  .pf-c-dropdown__menu.pf-m-align-right {
+    position: static;
+    top: 40px;
+  }
 `;
 export  const LinkStyle = styled.a`
   margin:10px;
@@ -25,4 +29,3 @@ export const P = styled.p`
     margin-top: -44px;
     margin-right: 100px;
 `;
-
