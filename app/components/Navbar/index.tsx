@@ -11,7 +11,10 @@ import Shape4 from '../../images/shape4.svg';
 import Auth from '../../images/auth.svg';
 import { Avatar } from '@patternfly/react-core';
 import Select from 'react-select';
-import { NavbarStyle, Span, P, ButtonStyle } from './NavbarStyle'
+import { NavbarStyle, Span, P, LinkStyle } from './NavbarStyle'
+import { Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
 
 
 const options = [
@@ -39,58 +42,113 @@ class Navbar extends React.Component<{}, ComponentState>{
         });
     };
     render() {
-        console.log('state', this.state.activeItem)
+
+
+        const SalesMenu = (
+            <Menu>
+                <Menu.Item>
+                    <Link to="/earned-comission">
+                        Earned Comission
+                    </Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to="/sales-transection">
+                        Sales transection
+                    </Link>
+                </Menu.Item>
+            </Menu>
+        );
+        const ResellerMenu = (
+            <Menu>
+                <Menu.Item>
+                    <Link to="/reseller-group">
+                        Reseller Group
+                    </Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to="/reseller">
+                        Reseller
+                    </Link>
+                </Menu.Item>
+            </Menu>
+        );
+        const ProductConfigrationMenu = (
+            <Menu>
+                <Menu.Item>
+                    <Link to="/product-configration/price-item">
+                        Price Item types
+                    </Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to="/product-configration/product">
+                        Products
+                    </Link>
+                </Menu.Item>
+            </Menu>
+        );
+        const AthenticationMenu = (
+            <Menu>
+                <Menu.Item>
+                    <Link to="/athentication">
+                        Groups
+                    </Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to="/user">
+                        User
+                    </Link>
+                </Menu.Item>
+            </Menu>
+        );
+
         return (
-            <div>
+            <React.Fragment>
                 <NavbarStyle>
                     <img src={Logo} alt="logo" style={{ width: '200px', padding: '15px' }} />
-                    <div>
-                        <Button variant='link'>
-                            <Link to="/dashboard" >
-                                Dashboard
-                            {/* <Avatar src={Mask} alt="avatar"></Avatar> */}
-                            </Link>
-                        </Button>
-                        <Button variant='link'>
-                            <Link to="/sales">
-                                Sales
-                                {/* <Avatar src={Mask1} alt="avatar"></Avatar> */}
-                            </Link>
-                        </Button>
-                        <Button variant='link'>
-                            <Link to="/reseller">
-                                Reseller
-                                {/* <Avatar src={Shape1} alt="avatar"></Avatar> */}
-                            </Link>
-                        </Button>
-                        <Button variant='link'>
-                            <Link to="/product-configration">
-                                Product Configration
-                                {/* <Avatar src={Shape2} alt="avatar"></Avatar> */}
-                            </Link>
-                        </Button>
-                        <Button variant='link'>
-                            <Link to="/comission">
-                                Comission
-                                {/* <Avatar src={Shape3} alt="avatar"></Avatar> */}
-                            </Link>
-                        </Button>
-                        <Button variant='link'>
-                            <Link to="/athentication">
-                                Athentication
-                                {/* <Avatar src={Auth} alt="avatar"></Avatar> */}
-                            </Link>
-                        </Button>
-                    </div>
+
+                    <LinkStyle>
+                        <Link to="/" >Dashboard</Link>
+                    </LinkStyle>
+                    <LinkStyle >
+                        <Dropdown overlay={SalesMenu}>
+                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                Sales<DownOutlined />
+                            </a>
+                        </Dropdown>
+                    </LinkStyle>
+                    <LinkStyle>
+                        <Dropdown overlay={ResellerMenu}>
+                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                Reseller<DownOutlined />
+                            </a>
+                        </Dropdown>
+                    </LinkStyle>
+                    <LinkStyle>
+                        <Dropdown overlay={ProductConfigrationMenu}>
+                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                Product configration<DownOutlined />
+                            </a>
+                        </Dropdown>
+                    </LinkStyle>
+                    <LinkStyle>
+                        <Link to="/comission">Comission</Link>
+                    </LinkStyle>
+                    <LinkStyle>
+                        <Dropdown overlay={AthenticationMenu}>
+                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                Athentication and Authorization<DownOutlined />
+                            </a>
+                        </Dropdown>
+                    </LinkStyle>
                 </NavbarStyle>
                 <Span>
-                    <Select options={options} onChange ={this.onSelect} />
+                    <Select options={options} onChange={this.onSelect} />
                 </Span>
                 <P>
                     <Avatar src={Shape4} alt="avatar"></Avatar>
                 </P>
 
-            </div>
+            </React.Fragment>
         );
     }
 }

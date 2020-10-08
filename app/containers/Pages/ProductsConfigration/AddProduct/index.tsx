@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './AddProduct.css'
-import Header from '../Header';
+import ProductHeader from '../ProductHeader';
 import {
     Form,
     FormGroup,
@@ -21,8 +21,10 @@ interface stateComponent {
     select: any
 
 }
+interface IProps {
 
-export default class AddProduct extends Component<{}, stateComponent> {
+}
+export default class AddProduct extends Component<IProps, stateComponent> {
 
     constructor(props) {
         super(props)
@@ -31,15 +33,15 @@ export default class AddProduct extends Component<{}, stateComponent> {
             displayName: "",
             select: "",
         }
-        this.handleInputCode = (code) => {
-            this.setState({code})
-        }
-        this.handleInputname = (displayName) => {
-            this.setState({displayName})
-        }
-        this.handelSelectItem = (e) => {
-            this.setState({ select: e.target.value })
-        }
+    }
+    handleInputCode = (code) => {
+        this.setState({ code })
+    }
+    handleInputname = (displayName) => {
+        this.setState({ displayName })
+    }
+    handelSelectItem = (e) => {
+        this.setState({ select: e.target.value })
     }
     onSubmit = (e) => {
         e.preventDefault()
@@ -52,10 +54,10 @@ export default class AddProduct extends Component<{}, stateComponent> {
     }
     render() {
         console.log(this.state)
-        const {code , displayName, select} = this.state
+        const { code, displayName, select } = this.state
         return (
             <React.Fragment>
-                <Header />
+                <ProductHeader />
                 <div className="Heading">
                     <h2>Add Product</h2>
                 </div>

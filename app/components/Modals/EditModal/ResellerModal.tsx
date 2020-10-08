@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { Modal, Button, ModalVariant, TextInput, Form, FormGroup, Grid, GridItem, SearchInput, Flex, FlexItem } from '@patternfly/react-core';
+import { Modal, Button, ModalVariant, TextInput, Form, FormGroup, Grid, GridItem, SearchInput, Divider } from '@patternfly/react-core';
 
 
 
 interface stateComponent {
     isModalOpen: boolean,
 }
-class ProductModal extends Component<{}, stateComponent> {
+interface IProps{
+    handleModalClose: any,
+    showModal: boolean,
+}
+class ResellerModal extends Component<IProps, stateComponent> {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +18,6 @@ class ProductModal extends Component<{}, stateComponent> {
         };
     }
     handleModalToggle = () => {
-        console.log("close")
         this.props.handleModalClose(false)
     };
     onSubmit = () => {
@@ -36,7 +39,7 @@ class ProductModal extends Component<{}, stateComponent> {
                         <Button key="confirm" variant="danger" onClick={this.handleModalToggle}>
                             Delete Product
                          </Button>,
-                        <Button key="confirm" variant="primary" onClick={this.handleModalToggle}>
+                        <Button key="confirm" variant="primary" onClick={this.handleModalToggle} style={{marginLeft:"auto"}}>
                             Add
                          </Button>,
                         <Button key="cancel" variant="link" onClick={this.handleModalToggle}>
@@ -44,36 +47,23 @@ class ProductModal extends Component<{}, stateComponent> {
                          </Button>
                     ]}
                 >
-                    <Form onSubmit={this.onSubmit}>
                         <Grid>
-                            <GridItem span={6}>
-                                <FormGroup label="Code :" isRequired fieldId="simple-form-Code" >
+                            <GridItem span={6} style={{width:"200%"}}>
+                                <FormGroup label="Group Name" isRequired fieldId="simple-form-Code" >
                                     <TextInput
                                         type="text"
                                         isRequired
-                                        placeholder="code"
+                                        placeholder="Reseller zone"
                                         aria-describedby="simple-form-name-helper"
                                         onChange={this.handleInputCode}
-                                        name="code"
-                                    />
-                                </FormGroup>
-                            </GridItem>
-                            <GridItem span={6}>
-                                <FormGroup label="Display Name :" isRequired fieldId="simple-Display-Name" >
-                                    <TextInput
-                                        type="text"
-                                        isRequired
-                                        placeholder="Display Name"
-                                        aria-describedby="simple-form-name-helper"
-                                        onChange={this.handleInputname}
-                                        name="displayName"
+                                        name="groupName"
                                     />
                                 </FormGroup>
                             </GridItem>
                         </Grid>
-                        <Grid>
+                        <Grid style={{ marginTop: "40px" }}>
                             <GridItem span={6}>
-                                <Button>Add Price Item</Button>
+                                <Button>Add New Reseller</Button>
                             </GridItem>
                             <GridItem span={6}>
                                 <SearchInput
@@ -82,19 +72,18 @@ class ProductModal extends Component<{}, stateComponent> {
                                     onClear={() => this.onChange()}
                                 />
                             </GridItem>
-                            <GridItem span={12}>
+                            <GridItem span={12} style={{ marginTop: "20px", border:"1px solid lightgray" }}>
                                Reseller1
-                               Reseller2
-                               Reseller3
-                               Reseller4
+                               RS2
+                               Reseller Group
+                               Reseller copy new
                             </GridItem>
                         </Grid>
-                    </Form>
                 </Modal>
             </React.Fragment>
         );
     }
 }
 
-export default ProductModal;
+export default ResellerModal;
 

@@ -5,16 +5,10 @@ export const NavbarStyle = styled.nav`
   border: 1px solid black;
   list-style: none;
 `;
-export  const ButtonStyle = styled.button`
-     border: none;
-     background-color: #f7f5f9;
-     &:hover{
-       border-bottom: 2px solid blue;
-       background-color: yellow;
-     }
-     &:active{
-       background-color: blue;
-     }
+export  const LinkStyle = styled.a`
+  margin:10px;
+  margin-left:10px;
+  font-weight:700;
 `;
 
 export const Span = styled.span`
